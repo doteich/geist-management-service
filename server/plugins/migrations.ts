@@ -6,7 +6,7 @@ export default defineNitroPlugin(async () => {
     
     // Execute your table creation
     await sql`
-      CREATE TABLE IF NOT EXISTS public."edge-instances" (
+      CREATE TABLE IF NOT EXISTS public.edge_instances (
         uid bigserial NOT NULL,
         name text NOT NULL,
         url text NOT NULL,
@@ -14,8 +14,8 @@ export default defineNitroPlugin(async () => {
         workflow text NOT NULL,
         kube_version text NOT NULL,
         PRIMARY KEY (uid),
-        CONSTRAINT url_unique UNIQUE (url),
-        CONSTRAINT name_unique UNIQUE (name)
+        CONSTRAINT url_edge_unique UNIQUE (url),
+        CONSTRAINT name_edge_unique UNIQUE (name)
       );
     `
 

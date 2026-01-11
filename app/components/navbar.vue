@@ -49,11 +49,12 @@ const menuItems = [
   },
   {
     label: 'Edge Instances',
-    group: "connectors",
+    group: "edge",
     items: [
       {
         label: 'Manage',
         icon: 'bi bi-wrench',
+        id: "management",
         protected: true
       },
       {
@@ -124,7 +125,7 @@ onMounted(() => {
   menuItems.forEach(g => {
     g.items.forEach(i => {
 
-      g.group == "" ? i.route = "/test" : i.route = `/${g.group}/${i.id}`
+      g.group == "" ? i.route = "/" : i.route = `/${g.group}/${i.id}`
     })
   })
 

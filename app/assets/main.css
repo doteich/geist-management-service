@@ -15,6 +15,8 @@
   --p-color-1: #f4f4f5;
   --p-color-2: #e4e4e7;
   --a-color-1: rgb(0, 140, 255);
+
+
 }
 
 
@@ -26,6 +28,7 @@ html.dark {
   --p-color-1: #2a2a2a;
   --p-color-2: #3a3a3a;
   --a-color-1: rgb(255, 0, 119);
+ 
 }
 
 body {
@@ -34,6 +37,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --p-iftalabel-focus-color: var(--a-color-1);
+  --p-menubar-item-focus-background: var(--p-background);
 }
 
 #app {
@@ -52,4 +57,26 @@ body {
   flex-grow: 1;
   overflow-y: auto;
 
+}
+
+.menu-bar {
+  margin-left: auto;
+  margin-right: 1vw;
+  margin-top: 1vh;
+  width: fit-content;
+}
+
+.menu-bar>* {
+  background: var(--p-color-1);
+  padding: 0;
+  border-left: 6px solid var(--a-color-1);
+}
+
+.p-menubar-item-icon {
+  color: var(--a-color-1)
+}
+
+
+.p-inputtext:enabled:focus {
+  border: 1px solid var(--a-color-1);
 }

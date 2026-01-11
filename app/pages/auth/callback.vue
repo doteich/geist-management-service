@@ -8,19 +8,21 @@
 
 import { useOidcAuth } from "~/composables/useOidcAuth";
 import loadingScreen from "~/components/loadingScreen.vue";
-
+import { useMainStore } from "#imports";
 
 const { manager } = useOidcAuth();
 const router = useRouter();
+const store = useMainStore()
 
 onMounted(() => {
 
   manager.signinRedirectCallback()
 
     .then((user) => {
+      store.setLoadingState(true)
       setTimeout(() => {
         router.push('/');
-
+        store.setLoadingState(false)
       }, 3000)
 
     })
