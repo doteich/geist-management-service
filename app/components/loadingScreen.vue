@@ -31,7 +31,7 @@ div {
 
 svg {
     margin-top: 1rem;
-    color: var( --a-color-1);
+    color: var( --a-color-prime);
 }
 
 .endless-animated-path {

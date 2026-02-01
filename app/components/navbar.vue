@@ -192,8 +192,8 @@ function routing(path: string, props: any) {
 
 <style>
 .p-avatar {
-  border: 3px solid var(--a-color-1);
-  box-shadow: 0px 0px 10px var(--a-color-1)
+  border: 3px solid var(--a-color-prime);
+  box-shadow: 0px 0px 10px var(--a-color-prime)
 }
 
 
@@ -252,7 +252,7 @@ function routing(path: string, props: any) {
 }
 
 .menu-item:hover {
-  border-left: 3px solid var(--a-color-1);
+  border-left: 3px solid var(--a-color-prime);
 }
 
 .menu-icon {

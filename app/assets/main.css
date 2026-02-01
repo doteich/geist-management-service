@@ -14,7 +14,15 @@
   --p-text-color: #333333;
   --p-color-1: #f4f4f5;
   --p-color-2: #e4e4e7;
-  --a-color-1: rgb(0, 140, 255);
+  --a-color-prime: rgb(0, 140, 255);
+  --a-color-light-1: rgb(20, 160, 255);
+  --a-color-light-2: rgb(90, 180, 255);
+  --a-color-light-3: rgb(130, 200, 255);
+  --a-color-light-4: rgb(202, 229, 238);
+  --a-color-dark-1: rgb(0, 120, 200);
+  --a-color-dark-2: rgb(0, 100, 200);
+  --a-color-dark-3: rgb(0, 90, 150);
+  --a-color-dark-4: rgb(0, 35, 60);
 
 
 }
@@ -27,8 +35,15 @@ html.dark {
   --p-text-color: #e5e5e5;
   --p-color-1: #2a2a2a;
   --p-color-2: #3a3a3a;
-  --a-color-1: rgb(255, 0, 119);
- 
+  --a-color-prime: rgb(255, 0, 119);
+  --a-color-light-1: rgb(255, 90, 160);
+  --a-color-light-2: rgb(255, 140, 180);
+  --a-color-light-3: rgb(255, 180, 200);
+  --a-color-light-4: rgb(255, 220, 240);
+  --a-color-dark-1: rgb(150, 0, 70);
+  --a-color-dark-2: rgb(110, 0, 50);
+  --a-color-dark-3: rgb(80, 0, 30);
+  --a-color-dark-4: rgb(50, 0, 10);
 }
 
 body {
@@ -37,7 +52,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --p-iftalabel-focus-color: var(--a-color-1);
+  --p-iftalabel-focus-color: var(--a-color-prime);
   --p-menubar-item-focus-background: var(--p-background);
 }
 
@@ -69,14 +84,14 @@ body {
 .menu-bar>* {
   background: var(--p-color-1);
   padding: 0;
-  border-left: 6px solid var(--a-color-1);
+  border-left: 6px solid var(--a-color-prime);
 }
 
 .p-menubar-item-icon {
-  color: var(--a-color-1)
+  color: var(--a-color-prime)
 }
 
 
 .p-inputtext:enabled:focus {
-  border: 1px solid var(--a-color-1);
+  border: 1px solid var(--a-color-prime);
 }

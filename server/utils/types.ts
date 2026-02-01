@@ -1,7 +1,7 @@
 export interface EdgeInstance {
     uid: number
     name: string
-    url: string
+    host: string
     namespace: string
     workflow: string
     kubeVersion: string

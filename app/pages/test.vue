@@ -8,7 +8,20 @@ definePageMeta({
 
 
 const { user, login, logout } = useOidcAuth();
-const { data: tasks, refresh, pending, error } = await useFetch('/api/edge')
+const { data: tasks, refresh, pending, error } = await useFetch('/api/edge', {
+  headers: {
+    "Authorization": `Bearer ${user.value?.access_token}`
+  }
+})
+
+async function resync() {
+  await useFetch('/api/edge', {
+    headers: {
+      "Authorization": `Bearer ${user.value?.access_token}`
+    }
+  })
+
+}
 
 
 </script>
@@ -29,12 +42,13 @@ const { data: tasks, refresh, pending, error } = await useFetch('/api/edge')
 
   <div>
     <h1>My Tasks</h1>
-    
+
     <div v-if="pending">Loading...</div>
     <div v-else-if="error">Error loading tasks: {{ error.message }}</div>
-    
+
     <p v-else>
       {{ tasks }}
     </p>
+    <button @click="resync">FETCH</button>
   </div>
 </template>

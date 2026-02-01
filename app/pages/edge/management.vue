@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import edgeAddDialog from "~/components/edgeAddDialog.vue";
+import { useOidcAuth } from "~/composables/useOidcAuth";
+
+const { user } = useOidcAuth();
+
 
 const items = ref([
     {
@@ -18,7 +22,7 @@ const items = ref([
 
 const showDialog = ref(false)
 
-function hide(){
+function hide() {
     showDialog.value = false
 }
 
@@ -29,7 +33,7 @@ function hide(){
     <div class="menu-bar">
         <Menubar :model="items" />
     </div>
-    <edge-add-dialog :visible="showDialog" @close="hide"></edge-add-dialog>
+    <edge-add-dialog :visible="showDialog" :token="user?.access_token" @close="hide"></edge-add-dialog>
 </template>
 
 <style></style>
