@@ -192,8 +192,9 @@ function routing(path: string, props: any) {
 
 <style>
 .p-avatar {
-  border: 3px solid var(--a-color-prime);
-  box-shadow: 0px 0px 10px var(--a-color-prime)
+  border: 2px solid var(--a-color-prime);
+  box-shadow: 0px 0px 7px var(--a-color-prime);
+  margin-bottom: 1vh;
 }
 
 

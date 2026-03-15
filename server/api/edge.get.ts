@@ -6,7 +6,7 @@ import { EdgeInstance } from "../utils/types"
 export default defineEventHandler(async (event) => {
     try {
         const eInstances = await sql<EdgeInstance[]>`
-        SELECT uid
+        SELECT *
         FROM edge_instances;
         `
         return eInstances

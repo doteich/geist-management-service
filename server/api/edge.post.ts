@@ -4,6 +4,8 @@ import { EdgeInstance } from "../utils/types"
 
 export default defineEventHandler(async (event) => {
     const body: EdgeInstance = await readBody(event)
+    console.log(body)
+
     try {
         const [uid] = await sql`
         INSERT INTO edge_instances (name, host, namespace, workflow, kube_version)

@@ -95,3 +95,9 @@ body {
 .p-inputtext:enabled:focus {
   border: 1px solid var(--a-color-prime);
 }
+
+h1 {
+  margin-left: 1vw;
+  border-bottom: 1px solid var(--a-color-prime);
+  margin-right: 1vw;
+}

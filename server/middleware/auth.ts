@@ -1,4 +1,4 @@
-import { createRemoteJWKSet, jwtVerify } from 'jose';
+import { createRemoteJWKSet, jwtVerify, createLocalJWKSet } from 'jose';
 import { getRequestHeader, setResponseStatus, sendError, defineEventHandler } from 'h3';
 
 export default defineEventHandler(async (event) => {
@@ -31,19 +31,17 @@ export default defineEventHandler(async (event) => {
     }));
   }
 
-
   const token = authHeader.substring(7);
 
-
-  // const jwksUri = new URL('/protocol/openid-connect/certs', authority);
-  const jwksUri = new URL('http://localhost:8080/realms/master/protocol/openid-connect/certs');
+  const jwksUri = new URL(`${authority}/protocol/openid-connect/certs`);
+  //const jwksUri = new URL('http://localhost:8080/realms/master/protocol/openid-connect/certs');
   const JWKS = createRemoteJWKSet(jwksUri);
 
   try {
     const { payload } = await jwtVerify(token, JWKS, {
       issuer: authority,
-      audience: config.public.clientId,
-      requiredClaims: ["openid"]
+      //audience: "geist",
+
     });
 
     // Optionally, attach user info to the event context

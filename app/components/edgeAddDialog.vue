@@ -8,7 +8,7 @@ const props = defineProps({
     token: String
 });
 
-defineEmits(["close"]);
+const emit = defineEmits(["close", "success"]);
 
 interface FormField {
     input: string;
@@ -65,6 +65,7 @@ const data = ref<InputMap>({
 const connectionIcon = ref("bi bi-arrow-up-square")
 const validationClass = ref("")
 const saveStatusClass = ref("")
+const errorMessage = ref("")
 
 
 const formValidation = computed(() => {
@@ -115,71 +116,95 @@ const canSave = computed(() => {
 })
 
 async function saveConnection() {
+    errorMessage.value = "";
+    saveStatusClass.value = "";
     const isFormValid = Object.values(formValidation.value).every(isValid => isValid === true);
     if (!isFormValid) {
         return
     }
     try {
-        await useFetch('/api/edge', {
+        await $fetch('/api/edge', {
             method: 'post',
-            body: {},
+            body: {
+                name: data.value.name.input,
+                host: data.value.host.input,
+                namespace: data.value.namespace.input,
+                workflow: data.value.workflow.input,
+                kubeVersion: data.value.kubeVersion.input
+            },
             headers: {
                 "Authorization": `Bearer ${props.token}`
             }
         })
+        saveStatusClass.value = "saveSuccess"
+        setTimeout(() => {
+            emit("success")
+            emit("close")
+            saveStatusClass.value = ""
+        }, 1000)
     }
-    catch (err) {
+    catch (err: any) {
         console.error(err)
+        saveStatusClass.value = "saveError"
+        errorMessage.value = err.data?.message || err.message || "Failed to save connection"
     }
 }
-
+// {body.name}, ${body.host}, ${body.namespace}, ${body.workflow}, ${body.kubeVersion}
 
 </script>
 
 <template>
 
     <div class="edge-form">
-        <Drawer :visible="visible" header="Add Instance" position="right" @update:visible="!$event && $emit('close')">
-            <IftaLabel>
-                <InputText v-model="data.name.input" :class="{ 'validClass': formValidation.name }" fluid />
-                <label>Name</label>
-            </IftaLabel>
+        <Drawer :visible="visible" header="Add Instance" position="right" @update:visible="!$event && $emit('close')"
+            :pt="{ content: { style: 'height: 100%; display: flex; flex-direction: column;' } }">
 
-            <IftaLabel class="input-separator">
-                <InputText v-model="data.host.input" :class="{ 'validClass': formValidation.host }" fluid />
-                <label>Host</label>
-            </IftaLabel>
+            <div class="drawer-fields">
+                <IftaLabel>
+                    <InputText v-model="data.name.input" :class="{ 'validClass': formValidation.name }" fluid />
+                    <label>Name</label>
+                </IftaLabel>
 
-            <IftaLabel class="input-separator">
-                <InputText v-model="data.endpoint.input" :class="{ 'validClass': formValidation.endpoint }" fluid
-                    disabled />
-                <label>Endpoint</label>
-            </IftaLabel>
+                <IftaLabel class="input-separator">
+                    <InputText v-model="data.host.input" :class="{ 'validClass': formValidation.host }" fluid />
+                    <label>Host</label>
+                </IftaLabel>
+
+                <IftaLabel class="input-separator">
+                    <InputText v-model="data.endpoint.input" :class="{ 'validClass': formValidation.endpoint }" fluid
+                        disabled />
+                    <label>Endpoint</label>
+                </IftaLabel>
 
 
-            <Button label="Validate Connection" class="input-separator input-button" fluid :icon="connectionIcon"
-                @click="validateConnection" :class="validationClass" />
+                <Button label="Validate Connection" class="input-separator input-button" fluid :icon="connectionIcon"
+                    @click="validateConnection" :class="validationClass" />
 
-            <IftaLabel class="input-separator">
-                <InputText v-model="data.kubeVersion.input" :class="{ 'validClass': formValidation.kubeVersion }" fluid
-                    disabled />
-                <label>Kubernetes Version</label>
-            </IftaLabel>
+                <IftaLabel class="input-separator">
+                    <InputText v-model="data.kubeVersion.input" :class="{ 'validClass': formValidation.kubeVersion }"
+                        fluid disabled />
+                    <label>Kubernetes Version</label>
+                </IftaLabel>
 
-            <IftaLabel class="input-separator">
-                <InputText v-model="data.namespace.input" :class="{ 'validClass': formValidation.namespace }" fluid
-                    disabled />
-                <label>Namespace</label>
-            </IftaLabel>
+                <IftaLabel class="input-separator">
+                    <InputText v-model="data.namespace.input" :class="{ 'validClass': formValidation.namespace }" fluid
+                        disabled />
+                    <label>Namespace</label>
+                </IftaLabel>
 
-            <IftaLabel class="input-separator">
-                <Select v-model="data.workflow.input" :options="['Direct', 'Git']" fluid
-                    :class="{ 'validClass': formValidation.workflow }" />
-                <label>Workflow</label>
-            </IftaLabel>
+                <IftaLabel class="input-separator">
+                    <Select v-model="data.workflow.input" :options="['Direct', 'Git']" fluid
+                        :class="{ 'validClass': formValidation.workflow }" />
+                    <label>Workflow</label>
+                </IftaLabel>
 
-            <Button label="Save Connection" class="input-separator input-button" fluid icon="bi bi-floppy"
-                @click="saveConnection" :disabled="!canSave" />
+                <Button label="Save Connection" class="input-separator input-button" fluid icon="bi bi-floppy"
+                    @click="saveConnection" :disabled="!canSave" :class="saveStatusClass" />
+            </div>
+
+            <div v-if="errorMessage" class="error-message">
+                {{ errorMessage }}
+            </div>
 
         </Drawer>
     </div>
@@ -213,5 +238,30 @@ async function saveConnection() {
 
 .connectionValid {
     color: rgb(3, 144, 76);
+}
+
+.saveError {
+    color: rgb(112, 2, 2) !important;
+    border-color: rgb(112, 2, 2) !important;
+}
+
+.saveSuccess {
+    color: rgb(3, 144, 76) !important;
+    border-color: rgb(3, 144, 76) !important;
+}
+
+.drawer-fields {
+    flex-grow: 1;
+}
+
+.error-message {
+    color: #720202;
+    background-color: #fce4e4;
+    border: 1px solid #f5c6cb;
+    padding: 1rem;
+    margin-top: 2vh;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    text-align: center;
 }
 </style>

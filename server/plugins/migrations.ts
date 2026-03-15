@@ -15,7 +15,7 @@ export default defineNitroPlugin(async () => {
         workflow text NOT NULL,
         kube_version text NOT NULL,
         PRIMARY KEY (uid),
-        CONSTRAINT url_edge_unique UNIQUE (url),
+        CONSTRAINT url_edge_unique UNIQUE (host),
         CONSTRAINT name_edge_unique UNIQUE (name)
       );
     `
