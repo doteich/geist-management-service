@@ -47,8 +47,6 @@ function showRemoveDialog(uid: number, name: string) {
 
 
 
-
-
 // Use a watch to fetch instances once the user (and their token) is available
 // This handles both client-side navigation and hard reloads (F5)
 watch(user, (newUser) => {
@@ -114,10 +112,10 @@ async function deleteInstance(uid: number) {
     <removeEdgeDialog :showDialog="removeDialogOpts.showDialog" :uid="removeDialogOpts.uid"
         :instanceName="removeDialogOpts.name" @deleteInstance="deleteInstance" @cancelAction="hideDeleteDialog">
     </removeEdgeDialog>
-    <section class="p-4">
-        <h1 class="mb-4">Available Instances</h1>
+    <section>
+        <h1>Available Instances</h1>
 
-        <div class="card shadow-sm border-round overflow-hidden">
+        <div class="card  overflow-hidden">
             <DataTable :value="edgeInstances" tableStyle="min-width: 50rem" class="p-datatable-sm">
                 <Column headerStyle="width: 3rem">
                     <template #body>

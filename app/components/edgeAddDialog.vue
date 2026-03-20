@@ -24,10 +24,7 @@ interface InputMap {
     kubeVersion: FormField;
 }
 
-interface ConnectResponse {
-    namespace: string,
-    kubernetesVersion: string
-}
+
 
 
 // 2. State: Only holds the inputs and the logic
@@ -83,16 +80,17 @@ const formValidation = computed(() => {
 async function validateConnection() {
     try {
         connectionIcon.value = "bi bi-arrow-repeat"
-        const url = `${data.value.host.input}/${data.value.endpoint.input}`
-        const res: ConnectResponse = await $fetch(url, {
-            method: 'GET',
+        const url = `${data.value.host.input}`
+        const response = await $fetch('/api/validate-edge', {
+            method: 'POST',
+            body: { url: url },
             headers: {
                 "Authorization": `Bearer ${props.token}`
             }
         })
 
-        data.value.kubeVersion.input = res.kubernetesVersion
-        data.value.namespace.input = res.namespace
+        data.value.kubeVersion.input = response.metadata.version
+        data.value.namespace.input = response.metadata.namespace
         validationClass.value = "connectionValid"
         connectionIcon.value = "bi bi-check-lg"
 
@@ -233,21 +231,21 @@ async function saveConnection() {
 }
 
 .connectionInvalid {
-    color: rgb(112, 2, 2);
+    color: var(--a-color-bad);
 }
 
 .connectionValid {
-    color: rgb(3, 144, 76);
+    color: var(--a-color-good);
 }
 
 .saveError {
-    color: rgb(112, 2, 2) !important;
-    border-color: rgb(112, 2, 2) !important;
+    color: var(--a-color-bad) !important;
+    border-color: var(--a-color-bad) !important;
 }
 
 .saveSuccess {
-    color: rgb(3, 144, 76) !important;
-    border-color: rgb(3, 144, 76) !important;
+    color: var(--a-color-good) !important;
+    border-color: var(--a-color-good) !important;
 }
 
 .drawer-fields {

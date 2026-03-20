@@ -23,7 +23,8 @@
   --a-color-dark-2: rgb(0, 100, 200);
   --a-color-dark-3: rgb(0, 90, 150);
   --a-color-dark-4: rgb(0, 35, 60);
-
+  --a-color-bad: rgb(255, 0, 0);
+  --a-color-good: rgb(7, 172, 27);
 
 }
 

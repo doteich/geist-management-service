@@ -5,6 +5,7 @@ export interface EdgeInstance {
     namespace: string
     workflow: string
     kubeVersion: string
+    connected: boolean
 }
 
 

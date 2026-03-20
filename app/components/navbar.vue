@@ -60,6 +60,7 @@ const menuItems = [
       {
         label: 'Monitor',
         icon: 'bi bi-clipboard2-pulse',
+        id: "monitor",
         protected: true
       },
       {

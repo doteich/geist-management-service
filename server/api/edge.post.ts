@@ -1,12 +1,21 @@
 import { PostgresError } from "postgres"
 import sql from "../utils/db"
+
 import { EdgeInstance } from "../utils/types"
 
 export default defineEventHandler(async (event) => {
     const body: EdgeInstance = await readBody(event)
-    console.log(body)
 
     try {
+
+        const response = await $fetch('/api/validate-edge', {
+            method: 'POST',
+            body: { url: body.host },
+            headers: {
+                "Authorization": getRequestHeader(event, 'authorization') || ''
+            }
+        })
+
         const [uid] = await sql`
         INSERT INTO edge_instances (name, host, namespace, workflow, kube_version)
         VALUES (${body.name}, ${body.host}, ${body.namespace}, ${body.workflow}, ${body.kubeVersion})
