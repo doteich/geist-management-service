@@ -87,14 +87,12 @@ function openEvent(event: any) {
                         style="background-color: var(--p-color-1); border-radius: 2px;   border-bottom: 2px solid var(--a-color-prime);">
                         <div class="edge-accord-header">
                             <p>{{ edgeInstance.name }}</p>
-                            <span class="edge-header-icon" style="color: var(--a-color-good)"
-                                v-if="edgeInstance.connected"><i class="bi bi-link-45deg"></i></span>
-                            <span class="edge-header-icon" style="color: var(--a-color-bad);"
-                                v-else="edgeInstance.connected"><i class="bi bi-x-square"></i></span>
+
+                            <div class="status-indicator edge-header-icon"
+                                :class="{ 'bg-good': edgeInstance.connected, 'bg-bad': !edgeInstance.connected }"></div>
                         </div>
                     </AccordionHeader>
                     <AccordionContent class="acc-content">
-                        <p class="m-0">{{ edgeInstance.name }}</p>
                         <monitorDetails :uid="edgeInstance.uid" :token="user?.access_token"></monitorDetails>
                     </AccordionContent>
                 </AccordionPanel>
@@ -124,5 +122,20 @@ function openEvent(event: any) {
 .edge-header-icon {
     margin-left: auto;
     margin-right: 1%;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.bg-good {
+    background-color: var(--a-color-good);
+}
+
+.bg-bad {
+    background-color: var(--a-color-bad);
 }
 </style>
