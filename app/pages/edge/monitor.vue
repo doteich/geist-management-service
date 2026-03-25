@@ -5,12 +5,15 @@ import { useOidcAuth } from "~/composables/useOidcAuth";
 import { useMainStore } from "@/stores/mainStore";
 import type { EdgeInstance } from "~~/server/utils/types";
 import monitorDetails from "~/components/monitorDetails.vue";
-
+import auth from "~/middleware/auth";
 
 const { user } = useOidcAuth();
 const store = useMainStore()
 
 const edgeInstances = ref<EdgeInstance[]>([])
+
+
+definePageMeta({middleware: auth})
 
 watch(user, (newUser) => {
     if (newUser?.access_token) {
@@ -85,7 +88,10 @@ function openEvent(event: any) {
                     style="border: 1px solid var(--p-color-2);">
                     <AccordionHeader
                         style="background-color: var(--p-color-1); border-radius: 2px;   border-bottom: 2px solid var(--a-color-prime);">
+                        <img src="~/assets/k8s_logo.png" alt="k8s" class="k8s-logo" />
                         <div class="edge-accord-header">
+
+                            
                             <p>{{ edgeInstance.name }}</p>
 
                             <div class="status-indicator edge-header-icon"
@@ -93,7 +99,7 @@ function openEvent(event: any) {
                         </div>
                     </AccordionHeader>
                     <AccordionContent class="acc-content">
-                        <monitorDetails :uid="edgeInstance.uid" :token="user?.access_token"></monitorDetails>
+                        <monitorDetails :uid="edgeInstance.uid" :token="user?.access_token "></monitorDetails>
                     </AccordionContent>
                 </AccordionPanel>
             </Accordion>
@@ -117,6 +123,7 @@ function openEvent(event: any) {
 .edge-accord-header>p {
     padding: 0;
     margin: 0;
+    margin-left: 1vw ;
 }
 
 .edge-header-icon {

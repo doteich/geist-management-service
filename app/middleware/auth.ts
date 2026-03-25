@@ -1,14 +1,14 @@
 import { useOidcAuth } from "~/composables/useOidcAuth"
 
-export default defineNuxtRouteMiddleware(() => {
+export default defineNuxtRouteMiddleware((to, from) => {
+    const { isLoggedIn } = useOidcAuth();
 
-    if (process.server) {
+    // Prevent infinite redirect if already going to '/'
+    if (to.path === '/') {
         return
     }
 
-    const { isLoggedIn } = useOidcAuth();
-
     if (!isLoggedIn()) {
-        return navigateTo('/');
+        return navigateTo('/')
     }
 })

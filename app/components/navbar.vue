@@ -77,7 +77,8 @@ const menuItems = [
       {
         label: 'Add',
         icon: 'bi bi-plus-lg',
-        protected: true
+        protected: true,
+        id: "add",
       },
       {
         label: 'Manage',

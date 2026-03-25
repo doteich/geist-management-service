@@ -5,9 +5,13 @@ import removeEdgeDialog from "~/components/removeEdgeDialog.vue";
 import { useOidcAuth } from "~/composables/useOidcAuth";
 import { useMainStore } from "@/stores/mainStore";
 import type { EdgeInstance } from "~~/server/utils/types";
+import auth from "~/middleware/auth";
 
 const { user } = useOidcAuth();
 const store = useMainStore()
+
+
+definePageMeta({middleware: auth})
 
 const items = ref([
     {
@@ -138,12 +142,7 @@ async function deleteInstance(uid: number) {
     </section>
 </template>
 
-<style scoped>
-.k8s-logo {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-}
+<style>
 
 :deep(.p-datatable-thead > tr > th) {
     background: var(--p-color-1);
