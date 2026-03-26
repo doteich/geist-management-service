@@ -85,11 +85,11 @@ function openEvent(event: any) {
 
             <Accordion value="0" @update:value="openEvent">
                 <AccordionPanel v-for="edgeInstance in edgeInstances" :key="edgeInstance.uid" :value="edgeInstance.name"
-                    style="border: 1px solid var(--p-color-2);">
+                    style="border: 1px solid var(--p-color-2); border-radius: 4px;">
                     <AccordionHeader
-                        style="background-color: var(--p-color-1); border-radius: 2px;   border-bottom: 2px solid var(--a-color-prime);">
+                        style="background-color: var(--p-color-1); border-radius: 2px;   border-bottom: 2px solid var(--p-color-2);">
                         <img src="~/assets/k8s_logo.png" alt="k8s" class="k8s-logo" />
-                        <div class="edge-accord-header">
+                        <div class="accordion-header-content">
 
                             
                             <p>{{ edgeInstance.name }}</p>
@@ -113,19 +113,7 @@ function openEvent(event: any) {
 
 <style>
 .edge-accord-header {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    color: var(--p-text-color);
-
 }
-
-.edge-accord-header>p {
-    padding: 0;
-    margin: 0;
-    margin-left: 1vw ;
-}
-
 .edge-header-icon {
     margin-left: auto;
     margin-right: 1%;

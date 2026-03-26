@@ -104,7 +104,27 @@ h1 {
 }
 
 .k8s-logo {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.accordion-header-bar {
+  background-color: var(--p-color-1) !important;
+  border-radius: 2px;
+  border-bottom: 2px solid var(--p-color-2) !important;
+}
+
+.accordion-header-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: var(--p-text-color);
+
+}
+
+.accordion-header-content>p {
+  padding: 0;
+  margin: 0;
+  margin-left: 1vw;
 }
