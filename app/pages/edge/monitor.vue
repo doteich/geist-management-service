@@ -13,7 +13,7 @@ const store = useMainStore()
 const edgeInstances = ref<EdgeInstance[]>([])
 
 
-definePageMeta({middleware: auth})
+definePageMeta({ middleware: auth })
 
 watch(user, (newUser) => {
     if (newUser?.access_token) {
@@ -91,7 +91,7 @@ function openEvent(event: any) {
                         <img src="~/assets/k8s_logo.png" alt="k8s" class="k8s-logo" />
                         <div class="accordion-header-content">
 
-                            
+
                             <p>{{ edgeInstance.name }}</p>
 
                             <div class="status-indicator edge-header-icon"
@@ -99,7 +99,7 @@ function openEvent(event: any) {
                         </div>
                     </AccordionHeader>
                     <AccordionContent class="acc-content">
-                        <monitorDetails :uid="edgeInstance.uid" :token="user?.access_token "></monitorDetails>
+                        <monitorDetails :uid="edgeInstance.uid" :token="user?.access_token"></monitorDetails>
                     </AccordionContent>
                 </AccordionPanel>
             </Accordion>
@@ -112,8 +112,6 @@ function openEvent(event: any) {
 </template>
 
 <style>
-.edge-accord-header {
-}
 .edge-header-icon {
     margin-left: auto;
     margin-right: 1%;

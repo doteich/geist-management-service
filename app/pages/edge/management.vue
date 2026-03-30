@@ -4,6 +4,7 @@ import edgeAddDialog from "~/components/edgeAddDialog.vue";
 import removeEdgeDialog from "~/components/removeEdgeDialog.vue";
 import { useOidcAuth } from "~/composables/useOidcAuth";
 import { useMainStore } from "@/stores/mainStore";
+import { FetchEdgeInstances } from "#imports";
 import type { EdgeInstance } from "~~/server/utils/types";
 import auth from "~/middleware/auth";
 
@@ -11,7 +12,7 @@ const { user } = useOidcAuth();
 const store = useMainStore()
 
 
-definePageMeta({middleware: auth})
+definePageMeta({ middleware: auth })
 
 const items = ref([
     {
@@ -63,21 +64,8 @@ async function fetchInstances() {
     if (!user.value?.access_token) return;
 
     store.setLoadingState(true)
-    try {
-        const instances = await $fetch<EdgeInstance[]>("/api/edge", {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${user.value.access_token}`
-            }
-        })
-        edgeInstances.value = instances ?? []
-    }
-    catch (err) {
-        console.error("Failed to fetch edge instances:", err)
-    }
-    finally {
-        store.setLoadingState(false)
-    }
+    edgeInstances.value = await FetchEdgeInstances(user.value?.access_token)
+    store.setLoadingState(false)
 }
 
 async function deleteInstance(uid: number) {
@@ -143,7 +131,6 @@ async function deleteInstance(uid: number) {
 </template>
 
 <style>
-
 :deep(.p-datatable-thead > tr > th) {
     background: var(--p-color-1);
     color: var(--a-color-prime);

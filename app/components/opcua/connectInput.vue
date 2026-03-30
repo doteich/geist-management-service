@@ -2,11 +2,9 @@
 import { ref, computed } from 'vue';
 
 const props = defineProps({
-    visible: {
-        type: Boolean,
-        default: true
-    },
     token: String,
+    uid: Number
+
 });
 
 const emit = defineEmits(['close', 'connected']);
@@ -67,7 +65,7 @@ async function connect() {
     connecting.value = true;
     errorMessage.value = '';
     try {
-        const response = await $fetch('/api/proxy/7/v1/opcua/connect', {
+        const response = await $fetch(`/api/proxy/${props.uid}/v1/opcua/connect`, {
             method: 'POST',
             body: form.value,
             headers: {
@@ -86,7 +84,7 @@ async function connect() {
 </script>
 
 <template>
-    <AccordionPanel style="border: 1px solid var(--p-color-2); border-radius: 4px;">
+    <AccordionPanel style="border: 1px solid var(--p-color-2); border-radius: 4px; margin-top: 1%;" value="1">
         <AccordionHeader class="accordion-header-bar">
             <div class="accordion-header-content">
                 <i class="bi bi-2-square"></i>
@@ -188,7 +186,7 @@ async function connect() {
     </AccordionPanel>
 </template>
 
-<style scoped>
+<style>
 .opcua-form-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
