@@ -20,8 +20,56 @@ const form = ref({
         password: ''
     },
     certificate: {
-        certificate: '-----BEGIN CERTIFICATE-----\n-----END CERTIFICATE-----',
-        privateKey: '-----BEGIN PRIVATE KEY-----\n-----END PRIVATE KEY-----'
+        // certificate: '-----BEGIN CERTIFICATE-----\n-----END CERTIFICATE-----',
+        // privateKey: '-----BEGIN PRIVATE KEY-----\n-----END PRIVATE KEY-----'
+        privateKey: `-----BEGIN PRIVATE KEY-----
+MIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQCRDPC+c8XtV5wm
+df6iBbSzziH/Q78w1TKL2kYw71Cr8P2ntgXTG91Q6IZplqDx+wENnHtqdFfh1dBM
+ZPQQMWypr54+ejgJ95TNQv0t6Po2lBGS7bu1qV3WSgEIfIfJyZ+p5c4QMOR+XwSJ
+k1m+YhWXpuFhExLm2frmQ/H1m9ztl3NiErMx+s20WM5N1K2HHT3HyFVTIt7TnQOn
+dpm3Wf5GZ1Mhksprm/dfUuKT1Z+iGCnGWP44GqH9NfjIdocRpMwAmT5uV4CweZVO
+FV8YthWkBzubB1gKjLsdpPWWmvdV6qFVAxPdLGILaDHfek5kWbQf9LUGWXiTunU0
+Gdjpch85AgMBAAECgf9kvZgQR/HJGNzBDMwAIfZe6v6xscIX9S2/jaZliWpKza73
+zA1yxOeKsFqqLibNHIdrhkL938/2b/AIUhUwXSNOUHdkIEsx1CiEzWg9FCvm71YS
+HD4PU8U+3CcOvdUq6kQtIgfI0JKuZU/BcGJKcW6NsfM83wJ07ImIlttCU5e3BKBP
+R+zNVRhQrjaT2FJe7iLlBECx3/WLphY13RgyvP2EWE3kSFJFYgC7c/Tjso+/aLVy
+czA0T8zmgMzs7hlSeoMzjTQdv7GCwl1mQYY9fTDiXkniu8JxOTKQonmNu7Svhyvv
+tdbYhQVj2WKz6BH+86aXtaL/smyI+F3YlSq0rvUCgYEAxv6StTtYWCnENgWeMHPE
+BDzqUorDhncZo2vNMruZdPXRwKZFNmQNUS6kfjO3mlNy6p1oCNb8PAanbYoW3DXA
+IjeWqeaqYxqUURqTcDIWI2Y3tuFM/dztxn+G0Ozsesoun3TyHRR2whvRTS9C8l4i
+QV6kTz2u/tilONSDsZytzlsCgYEAuppYx2stZ/BEWyZv8D0HSeuw4FrDMOGKh0+a
+Ru4rrPFchlWZSz3VGA7ouIs75Ucza2z1zY/psa4g+OqtGDXFOabwJLPNpERTcp92
+z/NGofAedaxzKPio+hsMO23GA5LigxQR3O40O5EJQArK1fk5+QbFRMzK+450+0Uq
+uXVMJPsCgYANDBoAagCz3yEvTZT+pkh+4qOWf+SsB1kV/vZ4UhaQtaFoGT7Gfy7k
+WMOORsPOCZSqT2HH2pi1MtZ9dyVikN+lHrHxN9+KGe8Jlk1+eLo83fHfOsx6hKbO
+cgQb5LzonCMMb3WEdJgIyBwkDGo+S+/BC3yIeYnkyb2jiUONPLGkqwKBgC6+dVjX
+J1OvI2B1+3qBvy6sRO2eruCyzwHgVfRIu1YiTBw2myT3A0d4jKGV91YTBPV3IQfy
+cgcZaJcSKnQzHAm6INQA2pW4q/K9sYScG2h7fxXZMivkRmgImILWl9DTXbyaLXNb
+lGgLh/ar/W2mdfhE0uvOJVbos7Mx+2bj1EQ7AoGAOfmdz5LLOP6nMTjA24Nz68yk
+2LayDtreJYlI/uyyJbpRGuSJqcX4PrIQRL2Jgf0fT/bNkkjNXJQv0jkVUAOTXSoN
+5XGP3LrVG+AX0XGhJWpQV68imQY9z1o1/JdPjpn97GDoousZ0jZuK8pkagfVMWhO
+hNk/s2LUqjpnXnjU/2c=
+-----END PRIVATE KEY-----
+`,
+        certificate: `-----BEGIN CERTIFICATE-----
+MIIDEjCCAfqgAwIBAgIIcd/OUCLz8yQwDQYJKoZIhvcNAQELBQAwGDEWMBQGA1UE
+AxMNZ2Vpc3QtaW90LmNvbTAeFw0yNjA0MDQxMTMxNDZaFw0yNzA0MDQxMTMxNDZa
+MBgxFjAUBgNVBAMTDWdlaXN0LWlvdC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IB
+DwAwggEKAoIBAQCRDPC+c8XtV5wmdf6iBbSzziH/Q78w1TKL2kYw71Cr8P2ntgXT
+G91Q6IZplqDx+wENnHtqdFfh1dBMZPQQMWypr54+ejgJ95TNQv0t6Po2lBGS7bu1
+qV3WSgEIfIfJyZ+p5c4QMOR+XwSJk1m+YhWXpuFhExLm2frmQ/H1m9ztl3NiErMx
++s20WM5N1K2HHT3HyFVTIt7TnQOndpm3Wf5GZ1Mhksprm/dfUuKT1Z+iGCnGWP44
+GqH9NfjIdocRpMwAmT5uV4CweZVOFV8YthWkBzubB1gKjLsdpPWWmvdV6qFVAxPd
+LGILaDHfek5kWbQf9LUGWXiTunU0Gdjpch85AgMBAAGjYDBeMAsGA1UdDwQEAwIC
+9DAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDwYDVR0TAQH/BAUwAwEB
+/zAfBgNVHREEGDAWhhR1cm46Z2Vpc3QtaW90OmNsaWVudDANBgkqhkiG9w0BAQsF
+AAOCAQEATsfpoMXzlg62ysewx9zFsdtZ6fL/pWST7123MMnLR8/T7GYBJe96cmxA
+QJt/9K7wwVGrvqNY3K9ecKmnJVBSE7v5AdyEu+ViS/aBbBaP/sBRqd1YrRQiG1Cz
+q9tvzJtFKthnyPzNLV2a/cmShs7kt+r+RliPXE/bZq/p+A/1HqN+GjKY9NgsD9j/
+XLBkKy52hNhj/sLuWNBzR9KXSqmKDbAIVHJZ9fGmYUXiaP4+zBMG2xmKXN+Wiqv/
+/2GdqHHkbJx4aqvOkHJSP8jFU2WGwIGdNQ5pokytxbgJA3qp3RXblZzLxFnmh5UG
+NEDF/wwefrbMtElGtO46SWOupdTn0w==
+-----END CERTIFICATE-----`
     }
 });
 
@@ -36,6 +84,8 @@ const connecting = ref(false);
 const generatingCert = ref(false);
 const errorMessage = ref('');
 const successMessage = ref('');
+const isSelected = ref(false)
+
 
 const showCertFields = computed(() => form.value.policy !== 'None');
 const showCredentialFields = computed(() => form.value.authentication === 'User&Password');
@@ -72,9 +122,11 @@ async function connect() {
                 "Authorization": `Bearer ${props.token}`
             }
         });
-        emit('connected', response);
+        isSelected.value = true
+        emit('connected', response?.uuid);
         successMessage.value = 'Connected successfully';
     } catch (err: any) {
+        isSelected.value = false
         errorMessage.value = 'Connection failed: ' + (err.data?.message || err.message);
     } finally {
         connecting.value = false;
@@ -89,6 +141,7 @@ async function connect() {
             <div class="accordion-header-content">
                 <i class="bi bi-2-square"></i>
                 <p>Server Connection</p>
+                <i class="bi bi-check2" style="color: green; font-size: larger;" v-if="isSelected"></i>
             </div>
         </AccordionHeader>
         <AccordionContent>
@@ -130,7 +183,6 @@ async function connect() {
                     </IftaLabel>
                 </div>
 
-                <!-- Credentials (Conditional) -->
                 <template v-if="showCredentialFields">
                     <div class="field-container">
                         <IftaLabel>

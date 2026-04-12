@@ -5,9 +5,14 @@ const props = defineProps({
     instances: Array
 })
 const selectedInstance = ref({})
-
+const isSelected = ref(false)
 
 const emit = defineEmits(["onInstanceSelect"])
+
+const selectInstance = () => { 
+    selectedInstance.value != "" ? isSelected.value = true : isSelected.value = false
+    emit('onInstanceSelect', selectedInstance.value)
+}
 
 
 
@@ -19,7 +24,8 @@ const emit = defineEmits(["onInstanceSelect"])
         <AccordionHeader class="accordion-header-bar">
             <div class="accordion-header-content">
                 <i class="bi bi-1-square"></i>
-                <p>Edge Instance</p>
+                <p class="asset-add-header-text">Edge Instance</p>
+                <i class="bi bi-check2" style="color: green; font-size: larger;" v-if="isSelected"></i>
             </div>
         </AccordionHeader>
         <AccordionContent>
@@ -27,11 +33,13 @@ const emit = defineEmits(["onInstanceSelect"])
                 <div class="field-container">
                     <IftaLabel>
                         <Select id="policy" :options="instances" optionLabel="name" v-model="selectedInstance"
-                            class="w-full" @value-change="$emit('onInstanceSelect', selectedInstance)" />
+                            class="w-full" @value-change="selectInstance" />
                         <label for="policy">Edge Instance</label>
                     </IftaLabel>
                 </div>
             </div>
+
+
         </AccordionContent>
     </AccordionPanel>
 </template>
